@@ -32,13 +32,13 @@ class AppThemes {
     //
 
     AppTheme.lightTheme: ThemeData(
-      primarySwatch: Colors.grey,
-      primaryColor: Colors.white,
+      primarySwatch: Colors.deepPurple,
+      primaryColor: Colors.deepPurple,
       brightness: Brightness.light,
-      backgroundColor: const Color(0xFFE5E5E5),
+      backgroundColor: Colors.deepPurple,
       dividerColor: const Color(0xff757575),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.deepPurple,
         foregroundColor: Colors.white,
       ),
       textButtonTheme: TextButtonThemeData(
@@ -47,10 +47,10 @@ class AppThemes {
         ),
       ),
       textTheme: const TextTheme(
-        subtitle1: TextStyle(color: Colors.black),
+        subtitle1: TextStyle(color: Colors.deepPurple),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Colors.grey,
+          backgroundColor: Colors.deepPurple,
           selectedItemColor: Colors.black,
           unselectedItemColor: Colors.white),
     ),

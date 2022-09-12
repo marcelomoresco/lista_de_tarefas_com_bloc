@@ -36,25 +36,42 @@ class _HomePageState extends State<HomePage> {
         return Scaffold(
           drawer: AppDrawer(),
           appBar: AppBar(
-            title: const Text("Lista de Tarefas App"),
+            backgroundColor: Colors.deepPurple,
+            title: const Text(
+              "Lista de Tarefas App",
+              style: TextStyle(color: Colors.white),
+            ),
             centerTitle: true,
             actions: [
               IconButton(
                 onPressed: () => _addTask(context),
-                icon: const Icon(Icons.add),
+                icon: const Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
               )
             ],
           ),
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Center(
-                child: Text("Tarefa:"),
+              SizedBox(
+                height: 20,
               ),
-              TasksList(taskList: tasksList)
+              const Center(
+                child: Text(
+                  "Tarefa do dia:",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: TasksList(taskList: tasksList),
+              )
             ],
           ),
           floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.deepPurple,
             onPressed: () => _addTask(context),
             tooltip: "Add Tarefa",
             child: const Icon(Icons.add),

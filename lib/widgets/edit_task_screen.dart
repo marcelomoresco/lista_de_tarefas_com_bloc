@@ -4,22 +4,25 @@ import 'package:todo_app_with_bloc/service/guid_gen.dart';
 import '../blocs/bloc.export.dart';
 import '../models/task.dart';
 
-class addTaskView extends StatelessWidget {
-  const addTaskView({
+class EditTaskView extends StatelessWidget {
+  final Task oldTask;
+  const EditTaskView({
     Key? key,
+    required this.oldTask,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final titleController = TextEditingController();
-    final descriptionController = TextEditingController();
+    final titleController = TextEditingController(text: oldTask.title);
+    final descriptionController =
+        TextEditingController(text: oldTask.description);
 
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(color: Colors.deepPurple),
       child: Column(
         children: [
-          const Text("Adicione uma tarefa",
+          const Text("Edite uma tarefa",
               style: TextStyle(fontSize: 24, color: Colors.white)),
           const SizedBox(
             height: 10,
@@ -60,26 +63,28 @@ class addTaskView extends StatelessWidget {
             children: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text("Cancelar",
-                    style: TextStyle(color: Colors.white)),
+                child: const Text("Cancelar"),
               ),
               ElevatedButton(
                 onPressed: () {
-                  var task = Task(
+                  var editedTask = Task(
                     title: titleController.text,
                     description: descriptionController.text,
-                    id: GUIDGen.generate(), // GERA O ID - INTERNET
+                    id: oldTask.id,
+                    isFavorite: oldTask.isFavorite,
+                    isDone: false,
                     date: DateTime.now().toString(),
                   );
-                  context.read<TasksBloc>().add(AddTask(task: task));
+                  context.read<TasksBloc>().add(EditedTask(
+                        oldTask: oldTask,
+                        newTask: editedTask,
+                      ));
 
                   Navigator.pop(context);
                 },
                 child: const Text(
-                  "Adicionar",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
+                  "Salvar",
+                  style: TextStyle(color: Colors.black),
                 ),
                 style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
               )

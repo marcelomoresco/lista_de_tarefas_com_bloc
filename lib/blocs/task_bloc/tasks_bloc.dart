@@ -12,6 +12,18 @@ class TasksBloc extends HydratedBloc<TasksEvent, TasksState> {
     on<AddTask>(_onAddTask);
     on<UpdateTask>(_onUpdateTask);
     on<DeleteTask>(_onDeleteTask);
+    on<EditedTask>(_onEditedTask);
+  }
+
+  void _onEditedTask(EditedTask event, Emitter<TasksState> emit) {
+    final state = this.state;
+    emit(
+      TasksState(
+        allTasks: List.from(state.allTasks)
+          ..remove(event.oldTask)
+          ..insert(0, event.newTask),
+      ),
+    );
   }
 
   void _onAddTask(AddTask event, Emitter<TasksState> emit) {

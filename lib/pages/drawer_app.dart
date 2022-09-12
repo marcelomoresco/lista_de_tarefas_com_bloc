@@ -15,6 +15,7 @@ class AppDrawer extends StatelessWidget {
             children: [
               Row(
                 children: [
+                  Icon(Icons.nightlight, color: Colors.white),
                   Text("Dark Mode"),
                   BlocBuilder<SwitchBloc, SwitchState>(
                     builder: (context, state) {
